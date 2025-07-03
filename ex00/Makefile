@@ -6,11 +6,11 @@
 #    By: aaleixo- <aaleixo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/23 15:22:53 by aaleixo-          #+#    #+#              #
-#    Updated: 2025/06/25 17:36:34 by aaleixo-         ###   ########.fr        #
+#    Updated: 2025/07/03 16:21:41 by aaleixo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Megaphone
+NAME = megaphone
 SOURCES = \
 	Megaphone.cpp
 OBJECTS = $(SOURCES:.cpp=.o)

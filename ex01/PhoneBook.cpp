@@ -6,7 +6,7 @@
 /*   By: aaleixo- <aaleixo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:40:22 by aaleixo-          #+#    #+#             */
-/*   Updated: 2025/06/25 18:34:09 by aaleixo-         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:19:09 by aaleixo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void PhoneBook::ADD()
 
 void PhoneBook::SEARCH()
 {
-	int input = 0;
+	std::string input;
+	int res = -1;
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|" << std::right << std::setw(10) << "Index";
 	std::cout << "|" << std::right << std::setw(10) << "First Name";
@@ -58,25 +59,26 @@ void PhoneBook::SEARCH()
 	std::cout << "---------------------------------------------" << std::endl;
 	for(int i = 0; i < 8; i++)
 	{
-		std::cout << "|" << std::right << std::setw(10) << i + 1;
+		std::cout << "|" << std::right << std::setw(10) << i;
 		std::cout << "|" << std::right << std::setw(10) << trunc(contacts[i]->first_name);
 		std::cout << "|" << std::right << std::setw(10) << trunc(contacts[i]->last_name);
 		std::cout << "|" << std::right << std::setw(10) << trunc(contacts[i]->nickname) << "|" << std::endl;
 	}
 	std::cout << "---------------------------------------------" << std::endl;
-	for(int i = 0; i == 0;)
+	while(std::cin)
 	{
 		std::cout << "Input index: ";
-		std::cin >> input;
-		if(input > 0 && input < 9)
+		if(!std::getline(std::cin, input))
+			break;
+		if(input.length() == 1)
+			res = input[0] - '0';
+		if(res >= 0 && res <= 7)
 		{
-			display(input - 1);
-			i = 1;
+			display(res);
+			break;
 		}
 		else
 			std::cout << "Invalid index." << std::endl;
-		std::cin.clear();
-		std::cin.ignore();
 	}
 }
 
@@ -98,10 +100,11 @@ int main()
 	std::string input;
 
 	intro();
-	while(1)
+	while(std::cin)
 	{
 		std::cout << "What would you like to do? (ADD | SEARCH | EXIT): ";
-		std::getline(std::cin, input);
+		if(!std::getline(std::cin, input))
+			break;
 		if(input == "ADD")
 			phone.ADD();
 		else if(input == "SEARCH")

@@ -6,7 +6,7 @@
 /*   By: aaleixo- <aaleixo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 17:43:10 by aaleixo-          #+#    #+#             */
-/*   Updated: 2025/06/25 18:26:17 by aaleixo-         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:14:03 by aaleixo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ size_t PhoneBook::check_number(std::string prompt)
 std::string PhoneBook::getnumber(std::string prompt)
 {
 	std::string input;
-	while(1)
+	while(std::cin)
 	{
 		std::cout << prompt;
-		std::getline(std::cin, input);
+		if(!std::getline(std::cin, input))
+			break;
 		if((!input.empty() && check_number(input) == 0))
 			break;
 		std::cout << "Input cannot be empty and must be only digits." << std::endl;
@@ -56,11 +57,12 @@ std::string PhoneBook::trunc(std::string arg)
 std::string PhoneBook::getstring(std::string prompt)
 {
 	std::string input;
-	while(1)
+	while(std::cin)
 	{
 		std::cout << prompt;
-		std::getline(std::cin, input);
-		if(!input.empty())
+		if(!std::getline(std::cin, input))
+			break;
+		if(!input.empty() && !input.find_first_not_of(' ', 0) && !input.find_first_not_of('\t', 0))
 			break;
 		std::cout << "Input cannot be empty." << std::endl;
 	}

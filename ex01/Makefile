@@ -6,11 +6,11 @@
 #    By: aaleixo- <aaleixo-@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/23 15:22:53 by aaleixo-          #+#    #+#              #
-#    Updated: 2025/06/25 17:44:23 by aaleixo-         ###   ########.fr        #
+#    Updated: 2025/07/03 16:21:34 by aaleixo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = PhoneBook
+NAME = phonebook
 SOURCES = \
 	PhoneBook.cpp utils.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
