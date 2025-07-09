@@ -6,7 +6,7 @@
 /*   By: aaleixo- <aaleixo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:40:22 by aaleixo-          #+#    #+#             */
-/*   Updated: 2025/07/03 16:19:09 by aaleixo-         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:14:59 by aaleixo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ Contact::Contact()
 void PhoneBook::ADD()
 {
 	static int i = 0;
-	contacts[i]->first_name = getstring("Please input your first name: ");
-	contacts[i]->last_name = getstring("Please input your last name: ");
-	contacts[i]->nickname = getstring("Please input your nickname: ");
-	contacts[i]->phonenumber = getnumber("Please input your phone number: ");
-	contacts[i]->darksecret = getstring("Please input your darkest secret: ");
+	contacts[i]->getinfo();
 	if(i < 7)
 		i++;
 	else
@@ -60,9 +56,9 @@ void PhoneBook::SEARCH()
 	for(int i = 0; i < 8; i++)
 	{
 		std::cout << "|" << std::right << std::setw(10) << i;
-		std::cout << "|" << std::right << std::setw(10) << trunc(contacts[i]->first_name);
-		std::cout << "|" << std::right << std::setw(10) << trunc(contacts[i]->last_name);
-		std::cout << "|" << std::right << std::setw(10) << trunc(contacts[i]->nickname) << "|" << std::endl;
+		std::cout << "|" << std::right << std::setw(10) << contacts[i]->trunc(1);
+		std::cout << "|" << std::right << std::setw(10) << contacts[i]->trunc(2);
+		std::cout << "|" << std::right << std::setw(10) << contacts[i]->trunc(3) << "|" << std::endl;
 	}
 	std::cout << "---------------------------------------------" << std::endl;
 	while(std::cin)
@@ -74,7 +70,7 @@ void PhoneBook::SEARCH()
 			res = input[0] - '0';
 		if(res >= 0 && res <= 7)
 		{
-			display(res);
+			contacts[res]->display();
 			break;
 		}
 		else

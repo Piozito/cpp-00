@@ -6,13 +6,13 @@
 /*   By: aaleixo- <aaleixo-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 17:43:10 by aaleixo-          #+#    #+#             */
-/*   Updated: 2025/07/03 16:14:03 by aaleixo-         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:14:28 by aaleixo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-size_t PhoneBook::check_number(std::string prompt)
+size_t Contact::check_number(std::string prompt)
 {
 	for(size_t i = 0; prompt[i]; i++)
 	{
@@ -22,7 +22,40 @@ size_t PhoneBook::check_number(std::string prompt)
 	return 0;
 }
 
-std::string PhoneBook::getnumber(std::string prompt)
+void Contact::display()
+{
+	std::cout << "First name: " << first_name << std::endl;
+	std::cout << "Last name: " << last_name << std::endl;
+	std::cout << "Nickname: " << nickname << std::endl;
+	std::cout << "Phone number: " << phonenumber << std::endl;
+	std::cout << "Darkest Secret: " << darksecret << std::endl;
+}
+
+std::string Contact::trunc(int option)
+{
+	std::string arg;
+	if(option == 1)
+		arg = first_name;
+	else if(option == 2)
+		arg = last_name;
+	else if(option == 3)
+		arg = nickname;
+	if(arg.size() >= 10)
+		return (arg.substr(0, 9) + ".");
+	else
+		return arg;
+}
+
+void Contact::getinfo()
+{
+	first_name = getstring("Please input your first name: ");
+	last_name = getstring("Please input your last name: ");
+	nickname = getstring("Please input your nickname: ");
+	phonenumber = getnumber("Please input your phone number: ");
+	darksecret = getstring("Please input your darkest secret: ");
+}
+
+std::string Contact::getnumber(std::string prompt)
 {
 	std::string input;
 	while(std::cin)
@@ -37,24 +70,7 @@ std::string PhoneBook::getnumber(std::string prompt)
 	return input;
 }
 
-void PhoneBook::display(int input)
-{
-	std::cout << "First name: " << contacts[input]->first_name << std::endl;
-	std::cout << "Last name: " << contacts[input]->last_name << std::endl;
-	std::cout << "Nickname: " << contacts[input]->nickname << std::endl;
-	std::cout << "Phone number: " << contacts[input]->phonenumber << std::endl;
-	std::cout << "Darkest Secret: " << contacts[input]->darksecret << std::endl;
-}
-
-std::string PhoneBook::trunc(std::string arg)
-{
-	if(arg.size() >= 10)
-		return (arg.substr(0, 9) + ".");
-	else
-		return arg;
-}
-
-std::string PhoneBook::getstring(std::string prompt)
+std::string Contact::getstring(std::string prompt)
 {
 	std::string input;
 	while(std::cin)
